@@ -2,6 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import { toast } from "react-toastify";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import cookie from "react-cookies";
+
 export const WavesButton = (props) => {
     
     let template = '';
@@ -66,4 +68,12 @@ export const errorHelper = (formik, value) => ({
   helperText:
     formik.errors[value] && formik.touched[value] ? formik.errors[value] : null,
 });
+
+export const getTokenCookie = () => cookie.load("x-access-token");
+export const removeTokenCookie = () =>
+  cookie.remove("x-access-token", { path: "/" });
+  
+export const getAuthHeader = () => {
+  return { headers: { Authorization: `Bearer ${getTokenCookie()}` } };
+};
 
