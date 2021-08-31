@@ -11,37 +11,35 @@ import Home from './components/home';
 import RegisterLogin from './components/auth'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { userIsAuth } from 'store/actions/usersActions';
+import { userIsAuth, userSignOut } from 'store/actions/usersActions';
 
 
 const Routes = (props) => {
-  
-  
-  /// check if the user is authenticated first by validating the token stored in the cookie
   const [loading, setLoading] = useState(true);
-  const users = useSelector(state => state.users);
+  const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
+  const signOutUser = () => {
+    dispatch(userSignOut());
+  };
 
   useEffect(() => {
-    dispatch(userIsAuth())
-  }, [dispatch])
+    dispatch(userIsAuth());
+  }, [dispatch]);
 
-
-  useEffect(()=>{
-    if(users.auth !== null){
-      setLoading(false)
+  useEffect(() => {
+    if (users.auth !== null) {
+      setLoading(false);
     }
-  },[users])
-
+  }, [users]);
 
   return (
     <BrowserRouter>
-      { loading ?
+      {loading ? (
         <Loader full={true} />
-        :
+      ) : (
         <>
-          <Header />
+          <Header users={users} signOutUser={signOutUser} />
           <MainLayout>
             <Switch>
               <Route path="/sign_in" component={RegisterLogin} />
@@ -50,11 +48,9 @@ const Routes = (props) => {
           </MainLayout>
           <Footer />
         </>
-      }
-
-
+      )}
     </BrowserRouter>
   );
-}
+};
 
 export default Routes;
