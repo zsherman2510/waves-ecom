@@ -1,12 +1,17 @@
-import React, {useState} from 'react'
-import {Button} from '@material-ui/core';
-import AuthForm from './authForm';
+import React, { useState } from "react";
+import { Button } from "@material-ui/core";
+import AuthForm from "./authForm";
+import PreventSignInRoute from "hoc/preventSignInRoute";
+
 const RegisterLogin = (props) => {
-    const [formType, setFormType] = useState(false);
-    const toggleFormType = () => {
-        setFormType(!formType);
-    }
-    return (
+  const [formType, setFormType] = useState(false);
+
+  const toogleFormType = () => {
+    setFormType(!formType);
+  };
+
+  return (
+    <PreventSignInRoute>
       <div className="page_wrapper">
         <div className="container">
           <div className="register_login_container">
@@ -15,52 +20,43 @@ const RegisterLogin = (props) => {
                 <>
                   <h1>New customers</h1>
                   <p>
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum."
+                    Sed ut perspiciatis unde omnis iste natus error sit
+                    voluptatem accusantium doloremque laudantium, totam rem
+                    aperiam, eaque ipsa quae ab illo inventore veritatis et
+                    quasi architecto beatae vitae dicta sunt explicabo.
                   </p>
                 </>
               ) : (
                 <>
-                  <h1>Welcome Back</h1>
+                  <h1>Welcome back</h1>
                   <p>
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum."
+                    Ut enim ad minima veniam, quis nostrum exercitationem ullam
+                    corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+                    consequatur? Quis autem vel eum iure reprehenderit qui in ea
+                    voluptate velit esse quam nihil molestiae consequatur, vel
+                    illum qui dolorem eum
                   </p>
                 </>
               )}
 
-            <Button
-              variant="contained"
-              color="default"
-              size="small"
-              onClick={()=> toggleFormType()}
-            
-            >
-              {formType ? 'Already Registered' : 'Need to Register' }
-            </Button>
+              <Button
+                variant="contained"
+                color="default"
+                size="small"
+                onClick={() => toogleFormType()}
+              >
+                {formType ? "Already registered ?" : "Need to register"}
+              </Button>
             </div>
-            <div className="right"> <h2>{formType ? 'Register' : 'Sign in'}</h2>
-                <AuthForm 
-                  formType={formType}
-                  {...props}
-                />
+            <div className="right">
+              <h2>{formType ? "Register" : "Sign in"}</h2>
+              <AuthForm formType={formType} {...props} />
             </div>
           </div>
         </div>
       </div>
-    );
-}
+    </PreventSignInRoute>
+  );
+};
 
-export default RegisterLogin
+export default RegisterLogin;

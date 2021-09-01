@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import MainLayout from "./hoc/mainLayout";
 import Loader from "utils/loader";
+import AuthGuard from "./hoc/authGuard";
 
 import { useDispatch, useSelector } from "react-redux";
 import { userIsAuth, userSignOut } from "store/actions/usersActions";
@@ -12,6 +13,7 @@ import Home from "./components/home";
 import RegisterLogin from "./components/auth";
 
 import Dashboard from "./components/dashboard";
+import UserInfo from "./components/dashboard/user/info";
 
 const Routes = (props) => {
   const [loading, setLoading] = useState(true);
@@ -41,7 +43,11 @@ const Routes = (props) => {
           <Header users={users} signOutUser={signOutUser} />
           <MainLayout>
             <Switch>
-              <Route path="/dashboard" component={Dashboard} />
+              <Route
+                path="/dashboard/user/user_info"
+                component={AuthGuard(UserInfo)}
+              />
+              <Route path="/dashboard" component={AuthGuard(Dashboard)} />
               <Route path="/sign_in" component={RegisterLogin} />
               <Route path="/" component={Home} />
             </Switch>
