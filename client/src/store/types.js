@@ -9,3 +9,4 @@ export const AUTH_USER = "auth_user";
 export const SIGN_OUT = "sign_out";
 
 export const UPDATE_USER_PROFILE = "update_user_profile";
+export const UPDATE_USER_EMAIL = "update_user_email";

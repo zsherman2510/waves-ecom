@@ -7,7 +7,7 @@ import { errorHelper } from "utils/tools";
 import { useDispatch } from "react-redux";
 import { TextField, Button } from "@material-ui/core";
 import { userUpdateProfile } from "store/actions/usersActions";
-
+import EmailStepper from "./stepper";
 const UserInfo = ({ users }) => {
   const dispatch = useDispatch();
 
@@ -49,7 +49,7 @@ const UserInfo = ({ users }) => {
             {...errorHelper(formik, "firstname")}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group mt-2 mb-2">
           <TextField
             style={{ width: "100%" }}
             name="lastname"
@@ -68,6 +68,10 @@ const UserInfo = ({ users }) => {
           Edit profile
         </Button>
       </form>
+      <hr />
+      <div>
+        <EmailStepper users={users} />
+      </div>
     </DashboardLayout>
   );
 };
