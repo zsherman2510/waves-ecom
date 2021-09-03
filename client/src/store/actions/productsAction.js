@@ -1,5 +1,11 @@
 import * as action from './index';
 import axios from 'axios';
+import {
+  getAuthHeader,
+  removeTokenCookie,
+  getTokenCookie,
+} from "../../utils/tools";
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 
 export const productsBySort = ({limit, sortBy, order, where}) => {
@@ -56,3 +62,15 @@ export const productsByPaginate = ({params}) => {
     }
   }
 }
+
+export const productRemove = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`/api/products/product/${id}`, getAuthHeader());
+      dispatch(action.productRemove());
+      dispatch(action.successGlobal());
+    } catch (error) {
+      dispatch(action.errorGlobal(error.response.data.message));
+    }
+  };
+};

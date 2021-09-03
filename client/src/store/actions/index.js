@@ -8,7 +8,8 @@ import {
   AUTH_USER,
   SIGN_OUT,
   UPDATE_USER_PROFILE,
-  UPDATE_USER_EMAIL
+  UPDATE_USER_EMAIL,
+  REMOVE_PRODUCT,
 } from "../types";
 
 export const userUpdateEmail = (data) => ({
@@ -43,6 +44,10 @@ export const productsByPaginate = (data) => ({
   type: GET_PROD_PAGINATE,
   payload: data,
 })
+
+export const productRemove = () => ({
+  type: REMOVE_PRODUCT,
+});
 
 /// Notifications
 
