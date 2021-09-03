@@ -55,6 +55,7 @@ const productsController = {
     }
   },
   async paginateProducts(req, res, next) {
+    console.log(req);
     try {
       
       const products = await productService.paginateProducts(req);

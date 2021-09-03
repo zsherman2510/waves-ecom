@@ -82,6 +82,7 @@ const updateProduct = async (id, req) => {
 };
 //search functionality
 const paginateProducts = async (req) => {
+
     try{
         
         let queryArray = [];
@@ -89,6 +90,7 @@ const paginateProducts = async (req) => {
         if(req.body.keywords && req.body.keywords != ''){
             // `gi` - globals, case insensitive
             const re = new RegExp(`${req.body.keywords}`, 'gi');
+            
             queryArray.push({
                 $match: {model: { $regex:re}}
             })
@@ -141,7 +143,7 @@ const paginateProducts = async (req) => {
         
         let aggQuery = Product.aggregate(queryArray);
         
-        
+        console.log(aggQuery);
         
         const options = { 
             page: req.body.page,
