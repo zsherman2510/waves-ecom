@@ -44,3 +44,15 @@ export const productsBySort = ({limit, sortBy, order, where}) => {
         
     }
 }
+
+export const productsByPaginate = ({params}) => {
+  return async (dispatch) => {
+    try {
+      const products = await axios.post("/api/products/paginate/all", params);
+      dispatch(action.productsByPaginate(products.data));
+      
+    } catch (error) {
+      dispatch(action.errorGlobal(error.response.data.message));
+    }
+  }
+}

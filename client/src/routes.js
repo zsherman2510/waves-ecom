@@ -15,6 +15,8 @@ import RegisterLogin from "./components/auth";
 import Dashboard from "./components/dashboard";
 import UserInfo from "./components/dashboard/user/info";
 
+import AdminProducts from './components/dashboard/admin/products/index';
+
 const Routes = (props) => {
   const [loading, setLoading] = useState(true);
   const users = useSelector((state) => state.users);
@@ -47,6 +49,11 @@ const Routes = (props) => {
                 path="/dashboard/user/user_info"
                 component={AuthGuard(UserInfo)}
               />
+              <Route
+                path="/dashboard/admin/products"
+                component={AuthGuard(AdminProducts)}
+              />
+              
               <Route path="/dashboard" component={AuthGuard(Dashboard)} />
               <Route path="/sign_in" component={RegisterLogin} />
               <Route path="/" component={Home} />

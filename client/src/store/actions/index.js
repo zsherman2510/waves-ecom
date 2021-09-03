@@ -1,6 +1,7 @@
 import {
   GET_PROD_BY_SOLD,
   GET_PROD_BY_DATE,
+  GET_PROD_PAGINATE,
   ERROR_GLOBAL,
   SUCCESS_GLOBAL,
   CLEAR_NOTIFICATION,
@@ -37,6 +38,11 @@ export const productsByDate = (data) => ({
   type: GET_PROD_BY_DATE,
   payload: data,
 });
+
+export const productsByPaginate = (data) => ({
+  type: GET_PROD_PAGINATE,
+  payload: data,
+})
 
 /// Notifications
 

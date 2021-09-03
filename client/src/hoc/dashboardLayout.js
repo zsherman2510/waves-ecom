@@ -20,7 +20,7 @@ export const links = [
 export const admin = [
   {
     name: "Products",
-    linkTo: "/dashboard/admin/admin_products",
+    linkTo: "/dashboard/admin/products",
   },
   {
     name: "Manage site",
