@@ -76,3 +76,28 @@ export const productRemove = (id) => {
     }
   };
 };
+
+export const addProduct = (product) => {
+  console.log(product);
+  return async (dispatch) => {
+    try {
+      await axios.post(`/api/products`,  {
+        model: product.model,
+        brand: product.brand,
+        price: product.price,
+        description: product.description,
+        available: product.available,
+        itemSold: 0,
+        shipping: product.shipping
+        
+      }, getAuthHeader());
+      dispatch(action.addProduct());
+      dispatch(action.successGlobal());
+    } catch (error) {
+      dispatch(action.errorGlobal(error.response.data.message));
+    }
+  };
+};
+
+
+

@@ -10,7 +10,14 @@ import {
   UPDATE_USER_PROFILE,
   UPDATE_USER_EMAIL,
   REMOVE_PRODUCT,
+  GET_ALL_BRANDS,
+  ADD_PRODUCT
 } from "../types";
+
+export const addProduct = (product) => ({
+  type: ADD_PRODUCT,
+  payload: product,
+});
 
 export const userUpdateEmail = (data) => ({
   type: UPDATE_USER_EMAIL,
@@ -68,3 +75,8 @@ export const clearNotification = () => {
     })
   }
 }
+
+export const getAllBrands = (brands) => ({
+  type: GET_ALL_BRANDS,
+  payload: brands,
+});
