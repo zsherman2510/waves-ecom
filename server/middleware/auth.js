@@ -4,7 +4,7 @@ const httpStatus = require('http-status');
 const {roles} = require('../config/roles')
 
 const verify = (req, res, resolve, reject, rights) => async(err, user) =>{
-    console.log('inside verify')
+    
     if(err || !user){
         return reject (new ApiError(httpStatus.UNAUTHORIZED, "sorry you not authorized"))
     }
@@ -15,7 +15,7 @@ const verify = (req, res, resolve, reject, rights) => async(err, user) =>{
         const permission = roles.can(req.user.role)[action](resource);
         
         if(!permission.granted){
-            return reject(new ApiError(httpStatus.FORBIDDEN, "sorry you not authorized"))
+            return reject(new ApiError(httpStatus.FORBIDDEN, "You dont have the permission"))
         }
         res.locals.permission = permission;
     } 
@@ -27,9 +27,9 @@ const verify = (req, res, resolve, reject, rights) => async(err, user) =>{
 }
 
 const auth = (...rights) => async(req, res, next) => {
-    console.log(rights);
+    
     return new Promise((resolve, reject) => {
-        console.log('inside promise')
+        
         passport.authenticate(
           "jwt",
           { session: false },

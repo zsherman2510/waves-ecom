@@ -26,7 +26,7 @@ const genAuth = async (user) => {
 
 const signInWithUser = async (email, password) => {
   try {
-    console.log(email);
+    
     const user = await userService.findUserByEmail(email);
 
     if (!user) {

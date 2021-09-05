@@ -78,7 +78,7 @@ export const productRemove = (id) => {
 };
 
 export const addProduct = (product) => {
-  console.log(product);
+  
   return async (dispatch) => {
     try {
       await axios.post(`/api/products`,  {

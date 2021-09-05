@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "hoc/dashboardLayout";
+import PicUpload from "./upload";
 
 import { useFormik } from "formik";
 import { errorHelper } from "utils/tools";
@@ -35,10 +36,11 @@ const AddProduct = (props) => {
       brand: "",
       //frets: "",
       //woodtype: "",
-      //description: "",
+      description: "",
       price: "",
       available: "",
       shipping: false,
+      images: [],
     },
     validationSchema: validation,
     onSubmit: (values) => {
@@ -47,9 +49,17 @@ const AddProduct = (props) => {
   });
   
    const handleSubmit = (values) => {
+     
      setLoading(true);
      dispatch(addProduct(values));
    };
+   
+   const handlePicValue = (pic) => {
+     const picArray = formik.values.images;
+     picArray.push(pic.url);
+     formik.setFieldValue("images", picArray);
+   };
+
 
    useEffect(() => {
      if (notifications && notifications.success) {
@@ -71,6 +81,9 @@ const AddProduct = (props) => {
         <Loader />
       ) : (
         <>
+          <PicUpload picValue={(pic) => handlePicValue(pic)} />
+          <Divider className="mt-3 mb-3" />
+          
           <form className="mt-3 article_form" onSubmit={formik.handleSubmit}>
             <div className="form-group">
               <TextField
@@ -190,7 +203,7 @@ const AddProduct = (props) => {
               </FormControl>
             </div>
             <Divider className="mt-3 mb-3" />
-            form
+            
             <Button variant="contained" color="primary" type="submit">
               Add product
             </Button>

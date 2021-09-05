@@ -6,7 +6,6 @@ const { ApiError } = require("../middleware/apiError");
 const productsController = {
   async addProduct(req, res, next) {
     try {
-      
       const product = await productService.addProduct(req.body);
 
       res.status(httpStatus.CREATED).json(product);
@@ -27,7 +26,6 @@ const productsController = {
   },
   async getProducts(req, res, next) {
     try {
-   
       const products = await productService.getProducts(req);
 
       res.json(products);
@@ -55,13 +53,21 @@ const productsController = {
     }
   },
   async paginateProducts(req, res, next) {
-    console.log(req);
+    
     try {
-      
       const products = await productService.paginateProducts(req);
       res.json(products);
     } catch (err) {
       next(err);
+    }
+  },
+  async picUpload(req, res, next) {
+    try {
+      console.log(req);
+      const pic = await productsService.picUpload(req);
+      res.json(pic);
+    } catch (error) {
+      next(error);
     }
   },
 };

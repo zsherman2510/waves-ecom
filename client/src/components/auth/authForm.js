@@ -28,9 +28,9 @@ const AuthForm = (props) => {
   });
 
   const handleSubmit = (values) => {
-      console.log(values);
+      
     if (props.formType) {
-        console.log(values)
+        
       dispatch(userRegister(values));
     } else {
       ///// sign in

@@ -5,9 +5,35 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const mongoose = require('mongoose');
 
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: "dxxrvghna",
+  api_key: `${process.env.CN_API_KEY}`,
+  api_secret: `${process.env.CN_API_SECRET}`,
+});
+
+const picUpload = async (req) => {
+  
+  
+  try {
+    const upload = await cloudinary.uploader.upload(req.files.file.path, {
+      public_id: `${Date.now()}`,
+      folder: "waves_upload",
+    });
+
+    return {
+      public_id: upload.public_id,
+      url: upload.url,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 const addProduct = async (req) => {
   try {
-      console.log(req);
+      
     if (await Product.productTaken(req.model)) {
       throw new ApiError(httpStatus.BAD_REQUEST, "Product already taken");
     }
@@ -159,4 +185,5 @@ module.exports = {
   updateProduct,
   getProducts,
   paginateProducts,
+  picUpload
 };

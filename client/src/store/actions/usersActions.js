@@ -49,7 +49,7 @@ export const userIsAuth = () => {
 
       const user = await axios.get(`/api/auth/isAuth`, getAuthHeader());
 
-      console.log(user);
+      
 
       dispatch(actions.userAuthenticate({ data: user.data, auth: true }));
     } catch (error) {
@@ -92,7 +92,7 @@ export const userUpdateProfile = (data) => {
 
 export const userUpdateEmail = (data) => {
   return async (dispatch, getState) => {
-    console.log(data);
+    
     try {
       const email = await axios.patch('/api/users/email', { newemail: data.newemail}, getAuthHeader()
       );

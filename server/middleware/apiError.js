@@ -19,7 +19,7 @@ const handleError = (err,res) => {
 }
 
 const convertToAPIError = (err, req, res, next) => {
-    console.log(err);
+   
     let error = err;
     if(!(error instanceof ApiError)){
         const statusCode = error.statusCode || error instanceof mongoose.Error ? httpStatus.BAD_REQUEST : httpStatus.INTERNAL_SERVER_ERROR;

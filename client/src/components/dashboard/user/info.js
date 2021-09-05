@@ -1,6 +1,7 @@
 import React from "react";
 import DashboardLayout from "hoc/dashboardLayout";
 import { useFormik } from "formik";
+
 import * as Yup from "yup";
 import { errorHelper } from "utils/tools";
 
@@ -34,6 +35,7 @@ const UserInfo = ({ users }) => {
 
   return (
     <DashboardLayout title="User information">
+      
       <form
         className="mt-3 article_form"
         style={{ maxWidth: "250px" }}

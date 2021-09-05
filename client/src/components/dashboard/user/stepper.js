@@ -13,7 +13,7 @@ import { userUpdateEmail } from "store/actions/usersActions";
 import usersReducer from "store/reducers/usersReducer";
 
 const EmailStepper = ({ users }) => {
-    console.log(users);
+    
   const [loading, setLoading] = useState(false);
   const [emailModal, setEmailModal] = useState(false);
   const notifications = useSelector((state) => state.notifications);

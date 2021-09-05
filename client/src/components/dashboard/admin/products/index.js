@@ -71,7 +71,7 @@ const AdminProducts = (props) => {
     };
       
     useEffect(() => {
-        console.log(searchValues);
+        
         dispatch(productsByPaginate(searchValues))
     }, [dispatch, searchValues])
     

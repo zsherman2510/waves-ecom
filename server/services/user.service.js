@@ -5,13 +5,13 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const findUserByEmail = async(email) => {
-    console.log(email + 'hello');
+    
     return User.findOne({ email: email})
 }
 
 
 const findUserById = async (_id) => {
-    console.log(_id);
+    
   return User.findById(_id);
 };
 
