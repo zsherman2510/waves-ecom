@@ -8,13 +8,13 @@ const mongoose = require('mongoose');
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
-  cloud_name: "dxxrvghna",
+  cloud_name: "zavion",
   api_key: `${process.env.CN_API_KEY}`,
   api_secret: `${process.env.CN_API_SECRET}`,
 });
 
 const picUpload = async (req) => {
-  
+  console.log(req.files);
   
   try {
     const upload = await cloudinary.uploader.upload(req.files.file.path, {
