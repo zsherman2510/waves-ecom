@@ -4,6 +4,7 @@ import {
   GET_PROD_PAGINATE,
   ADD_PRODUCT,
   GET_PROD_BY_ID,
+  CLEAR_CURRENT_PRODUCT,
 } from "../types";
 //reducer is the last step. return original state, then add the next action to the state and return the payload.
 export default function productsReducer(state = {}, action) {
@@ -18,6 +19,8 @@ export default function productsReducer(state = {}, action) {
       return { ...state, lastAdded: action.payload };
     case GET_PROD_BY_ID:
       return { ...state, byId: action.payload };
+    case CLEAR_CURRENT_PRODUCT:
+      return { ...state, byId: "" };
     default:
       return state;
   }

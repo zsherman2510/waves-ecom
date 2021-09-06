@@ -111,6 +111,20 @@ export const productsById = (id) => {
   };
 }; 
 
+export const editProduct = (values, id) => {
+  return async (dispatch) => {
+    try {
+      console.log(values);
+      await axios.patch(`/api/products/product/${id}`, values,getAuthHeader());
+      
+      dispatch(action.successGlobal("Update done !!"));
+    } catch (error) {
+      dispatch(action.errorGlobal(error.response.data.message));
+    }
+  };
+}; 
+
+
 
 
 

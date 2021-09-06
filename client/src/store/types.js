@@ -16,4 +16,6 @@ export const UPDATE_USER_EMAIL = "update_user_email";
 export const GET_ALL_BRANDS = "get_all_brands"; 
 export const GET_PROD_BY_ID = "get_prod_by_id";
 
+export const CLEAR_CURRENT_PRODUCT = "clear_current_product";
+
 

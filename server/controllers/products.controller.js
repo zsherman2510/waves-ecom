@@ -45,6 +45,7 @@ const productsController = {
   },
   async updateProduct(req, res, next) {
     try {
+      console.log(req.params);
       const id = req.params.id;
       const product = await productService.updateProduct(id, req);
       res.json(product);

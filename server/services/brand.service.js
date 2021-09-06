@@ -40,7 +40,7 @@ const getBrands = async (args) => {
   try {
       
     let order = args.order ? args.order : "asc";
-    let limit = args.limit ? args.limit : 5
+    let limit = args.limit ? args.limit : 200
     
     const brands = await Brand.find({}).sort([
         ["_id", order]

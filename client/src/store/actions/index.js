@@ -13,6 +13,7 @@ import {
   GET_ALL_BRANDS,
   ADD_PRODUCT,
   GET_PROD_BY_ID,
+  CLEAR_CURRENT_PRODUCT,
 } from "../types";
 
 export const addProduct = (product) => ({
@@ -60,6 +61,10 @@ export const productRemove = () => ({
 export const productsById = (product) => ({
   type: GET_PROD_BY_ID,
   payload: product,
+});
+
+export const clearCurrentProduct = () => ({
+  type: CLEAR_CURRENT_PRODUCT,
 });
 
 /// Notifications

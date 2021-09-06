@@ -10,7 +10,8 @@ import { validation, formValues, getValuesToEdit } from "./formValues";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBrands } from "store/actions/brandsAction";
-import { addProduct, productsById } from "store/actions/productsAction";
+import { editProduct, productsById } from "store/actions/productsAction";
+import { clearCurrentProduct } from "store/actions/index";
 // import { clearProductAdd } from 'store/actions/index'
 
 import {
@@ -42,7 +43,7 @@ const EditProduct = (props) => {
 
   const handleSubmit = (values) => {
     setLoading(true);
-    dispatch(addProduct(values));
+    dispatch(editProduct(values, props.match.params.id));
   };
 
   const handlePicValue = (pic) => {
@@ -58,13 +59,12 @@ const EditProduct = (props) => {
   };
 
   useEffect(() => {
-    if (notifications && notifications.success) {
-      props.history.push("/dashboard/admin/admin_products");
-    }
-    if (notifications && notifications.error) {
+    if (notifications) {
       setLoading(false);
+      
     }
-  }, [notifications, props.history]);
+    
+  }, [notifications]);
 
   useEffect(() => {
     const param = props.match.params.id;
@@ -80,6 +80,11 @@ const EditProduct = (props) => {
     }
   }, [products]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(clearCurrentProduct());
+    };
+  }, [dispatch]);
   // useEffect(()=>{
   //     return()=>{
   //         dispatch(clearProductAdd())

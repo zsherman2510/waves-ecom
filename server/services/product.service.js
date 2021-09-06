@@ -83,23 +83,17 @@ const deleteProduct = async (id) => {
 };
 
 
-const updateProduct = async (id, req) => {
+const updateProduct = async (_id, req) => {
   try {
+    console.log(_id);
+    console.log(req.body);
     const product = await Product.findOneAndUpdate(
-      {
-        id
-      },
-      {
-        "$set": {
-          req
-        },
-      },
+      { _id },
+      { $set: req.body },
       { new: true }
     );
-
-    if (!product) {
-      throw new ApiError(httpStatus.NOT_FOUND, "Product not found");
-    }
+     console.log(product); 
+    if (!product) throw new ApiError(httpStatus.NOT_FOUND, "Product not found");
 
     return product;
   } catch (err) {
