@@ -100,5 +100,17 @@ export const addProduct = (product) => {
   };
 };
 
+export const productsById = (id) => {
+  return async (dispatch) => {
+    try {
+      const product = await axios.get(`/api/products/product/${id}`);
+      dispatch(action.productsById(product.data));
+    } catch (error) {
+      dispatch(action.errorGlobal(error.response.data.message));
+    }
+  };
+}; 
+
+
 
 

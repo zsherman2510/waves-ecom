@@ -14,5 +14,6 @@ export const SIGN_OUT = "sign_out";
 export const UPDATE_USER_PROFILE = "update_user_profile";
 export const UPDATE_USER_EMAIL = "update_user_email";
 export const GET_ALL_BRANDS = "get_all_brands"; 
+export const GET_PROD_BY_ID = "get_prod_by_id";
 
 

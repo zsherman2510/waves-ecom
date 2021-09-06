@@ -11,7 +11,8 @@ import {
   UPDATE_USER_EMAIL,
   REMOVE_PRODUCT,
   GET_ALL_BRANDS,
-  ADD_PRODUCT
+  ADD_PRODUCT,
+  GET_PROD_BY_ID,
 } from "../types";
 
 export const addProduct = (product) => ({
@@ -50,10 +51,15 @@ export const productsByDate = (data) => ({
 export const productsByPaginate = (data) => ({
   type: GET_PROD_PAGINATE,
   payload: data,
-})
+});
 
 export const productRemove = () => ({
   type: REMOVE_PRODUCT,
+});
+
+export const productsById = (product) => ({
+  type: GET_PROD_BY_ID,
+  payload: product,
 });
 
 /// Notifications

@@ -27,3 +27,15 @@ export const validation = () =>
     available: Yup.number().required("Do we have stock ?"),
     shipping: Yup.boolean().required("Do we offer shipping"),
   });
+  
+  export const getValuesToEdit = (product) => {
+    return {
+      model: product.model,
+      brand: product.brand._id,
+      description: product.description,
+      price: product.price,
+      available: product.available,
+      shipping: product.shipping,
+      images: product.images,
+    };
+  };
