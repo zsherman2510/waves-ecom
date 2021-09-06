@@ -85,8 +85,7 @@ const deleteProduct = async (id) => {
 
 const updateProduct = async (_id, req) => {
   try {
-    console.log(_id);
-    console.log(req.body);
+  
     const product = await Product.findOneAndUpdate(
       { _id },
       { $set: req.body },
