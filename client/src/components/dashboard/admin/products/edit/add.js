@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "hoc/dashboardLayout";
 import PicUpload from "./upload";
+import PicViewer from "./picViewer";
 
 import { useFormik } from "formik";
 import { errorHelper } from "utils/tools";
@@ -30,6 +31,8 @@ const AddProduct = (props) => {
   const dispatch = useDispatch();
   const brands = useSelector((state) => state.brands);
   
+  
+  
   const formik = useFormik({
     initialValues: {
       model: "",
@@ -44,6 +47,7 @@ const AddProduct = (props) => {
     },
     validationSchema: validation,
     onSubmit: (values) => {
+      console.log(values);
       handleSubmit(values);
     },
   });
@@ -55,11 +59,19 @@ const AddProduct = (props) => {
    };
    
    const handlePicValue = (pic) => {
+     console.log(pic);
      const picArray = formik.values.images;
+     console.log(picArray);
      picArray.push(pic.url);
+     console.log(picArray);
      formik.setFieldValue("images", picArray);
    };
 
+   const deletePic = (index) => {
+     const picArray = formik.values.images;
+     picArray.splice(index, 1);
+     formik.setFieldValue("images", picArray);
+   };
 
    useEffect(() => {
      if (notifications && notifications.success) {
@@ -81,9 +93,10 @@ const AddProduct = (props) => {
         <Loader />
       ) : (
         <>
+          <PicViewer formik={formik} deletePic={(index) => deletePic(index)} />
           <PicUpload picValue={(pic) => handlePicValue(pic)} />
           <Divider className="mt-3 mb-3" />
-          
+
           <form className="mt-3 article_form" onSubmit={formik.handleSubmit}>
             <div className="form-group">
               <TextField
@@ -203,7 +216,7 @@ const AddProduct = (props) => {
               </FormControl>
             </div>
             <Divider className="mt-3 mb-3" />
-            
+
             <Button variant="contained" color="primary" type="submit">
               Add product
             </Button>

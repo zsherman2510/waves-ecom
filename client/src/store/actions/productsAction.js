@@ -88,7 +88,8 @@ export const addProduct = (product) => {
         description: product.description,
         available: product.available,
         itemSold: 0,
-        shipping: product.shipping
+        shipping: product.shipping,
+        images: product.images
         
       }, getAuthHeader());
       dispatch(action.addProduct());
