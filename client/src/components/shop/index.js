@@ -2,6 +2,9 @@ import React, { useEffect, useReducer, useState } from "react";
 import CardBlocks from "../../utils/products/cardBlock";
 import PaginateNav from "../../utils/paginateNav";
 import SearchBar from "./searchbar";
+import CollapseCheckbox from "./collapseCheckbox";
+import RangeSelect from "./rangeSelect";
+
 
 import { useDispatch, useSelector } from "react-redux";
 import { productsByPaginate } from "store/actions/productsAction";
@@ -45,6 +48,18 @@ const Shop = () => {
   };
   
   
+   const handleFilters = (filters, category) => {
+     if (category === "brands") {
+       setSearchValues({ brands: filters, page: 1 });
+     }
+    //  if (category === "frets") {
+    //    setSearchValues({ frets: filters, page: 1 });
+    //  }
+   };
+   const handleRange = (values) => {
+     setSearchValues({ min: values[0], max: values[1], page: 1 });
+   };
+  
   useEffect(() => {
     dispatch(getAllBrands());
   }, [dispatch]);
@@ -62,7 +77,29 @@ const Shop = () => {
       </div>
       <div className="container">
         <div className="shop_wrapper">
-          <div className="left">collapse brand collapse frets range select</div>
+          <div className="left">
+            <CollapseCheckbox
+              initState={true}
+              title="Brands"
+              list={brands.all}
+              handleFilters={(filters) => handleFilters(filters, "brands")}
+            />
+            {/* <CollapseCheckbox
+              initState={false}
+              title="Frets"
+              list={[
+                { _id: 20, name: 20 },
+                { _id: 21, name: 21 },
+                { _id: 22, name: 22 },
+                { _id: 24, name: 24 },
+              ]}
+              handleFilters={(filters) => handleFilters(filters, "frets")}
+            /> */}
+            <RangeSelect
+              title="Price range"
+              handleRange={(values) => handleRange(values)}
+            />
+          </div>
           <div className="right">
             <div className="shop_options">
               <div className="shop_grids clear">
