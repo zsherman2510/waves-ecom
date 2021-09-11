@@ -57,6 +57,8 @@ export const productsByPaginate = (params) => {
     
     try {
       const products = await axios.post("/api/products/paginate/all", params);
+      
+      console.log(products)
       dispatch(action.productsByPaginate(products.data));
       
     } catch (error) {
