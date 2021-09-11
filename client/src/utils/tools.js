@@ -8,36 +8,50 @@ export const WavesButton = (props) => {
     
     let template = '';
     
-    switch(props.type){
-        case "default":
-            template = <Link
-                className={!props.altClass ? 'link_default' : props.altClass}
-                to={props.linkTo}
-                style={{
-                    
-                    ...props.style
-                }}
-            >
+    switch (props.type) {
+      case "default":
+        template = (
+          <Link
+            className={!props.altClass ? "link_default" : props.altClass}
+            to={props.linkTo}
+            style={{
+              ...props.style,
+            }}
+          >
             {props.title}
-            </Link>
+          </Link>
+        );
         break;
-        case "bag_link":
-            // template = <AddShoppingCartIcon />
-            template = <div
-                className="bag_link"
-                onClick={() => {
-                  
-                    props.runAction();
-                  
-                }}
-                style={{ ...props.style }}
-              >
-                <AddShoppingCartIcon />
-              </div>;
-            
+      case "bag_link":
+        // template = <AddShoppingCartIcon />
+        template = (
+          <div
+            className="bag_link"
+            onClick={() => {
+              props.runAction();
+            }}
+            style={{ ...props.style }}
+          >
+            <AddShoppingCartIcon />
+          </div>
+        );
+
         break;
-        default:
-            template= '';
+      case "add_to_cart_link":
+        template = (
+          <div
+            className="add_to_cart_link"
+            onClick={() => {
+              props.runAction();
+            }}
+          >
+            <AddShoppingCartIcon />
+            Add to cart
+          </div>
+        );
+        break;
+      default:
+        template = "";
     }
      return template;
 }
