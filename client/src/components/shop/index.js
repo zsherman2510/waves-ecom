@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState } from "react";
 import CardBlocks from "../../utils/products/cardBlock";
 import PaginateNav from "../../utils/paginateNav";
-
+import SearchBar from "./searchbar";
 
 import { useDispatch, useSelector } from "react-redux";
 import { productsByPaginate } from "store/actions/productsAction";
@@ -37,7 +37,11 @@ const Shop = () => {
   };
 
   const handleResetSearch = () => {
-    setSearchValues({ keywords: "" });
+    setSearchValues({ keywords: "", page:1 });
+  };
+  
+  const handleKeywords = (values) => {
+    setSearchValues({ keywords: values, page: 1 });
   };
   
   
@@ -54,7 +58,7 @@ const Shop = () => {
   return (
     <div className="page_container">
       <div className="page_top">
-        <div className="container">FORM</div>
+        <SearchBar handleKeywords={(values) => handleKeywords(values)} />
       </div>
       <div className="container">
         <div className="shop_wrapper">
